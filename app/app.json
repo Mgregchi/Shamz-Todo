@@ -7,10 +7,14 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -37,6 +41,16 @@
           }
         }
       ]
-    ]
+    ],
+    "builds": {
+      "android": {
+        "releaseChannel": "prod"
+      }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "107fb350-c535-4b12-9492-9325f2eac382"
+      }
+    }
   }
 }

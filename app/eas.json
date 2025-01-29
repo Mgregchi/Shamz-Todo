@@ -1,0 +1,28 @@
+{
+  "cli": {
+    "version": ">= 5.4.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "android": {
+      "workflow": "managed"
+    },
+    "ios": {
+      "workflow": "managed"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "env": {
+        "API_URL": "https://jsonplaceholder.typicode.com/todos?_limit=10"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
