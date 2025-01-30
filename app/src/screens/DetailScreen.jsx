@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import {
   Button,
   TextInput,
@@ -68,64 +68,66 @@ export default function TodoDetailScreen({ route, navigation }) {
             )}
           />
           <Card.Content style={styles.cardContent}>
-            {isEditing ? (
-              <TextInput
-                mode="outlined"
-                style={styles.input}
-                value={newTodo}
-                onChangeText={setNewTodo}
-                multiline
-              />
-            ) : (
-              <Text variant="titleMedium" style={styles.title}>
-                {todo.title}
-              </Text>
-            )}
-
-            {isEditing ? (
-              <View style={styles.cardAction}>
-                <Button
-                  onPress={() => setIsEditing(false)}
+            <ScrollView>
+              {isEditing ? (
+                <TextInput
                   mode="outlined"
-                  icon="close"
-                  contentStyle={styles.button}
-                >
-                  Cancel
-                </Button>
-                <Button
-                  mode="contained"
-                  onPress={() => {
-                    saveEdit(newTodo);
-                    setIsEditing(false);
-                  }}
-                  icon="content-save-check"
-                  style={styles.saveButton}
-                  textColor="white"
-                >
-                  Save
-                </Button>
-              </View>
-            ) : (
-              <View style={styles.cardAction}>
-                <Button
-                  onPress={() => setIsEditing(true)}
-                  mode="contained"
-                  icon="note-edit"
-                  contentStyle={styles.button}
-                  textColor="white"
-                >
-                  Edit
-                </Button>
-                <Button
-                  onPress={() => deleteTodo(todo.id)}
-                  icon="delete"
-                  contentStyle={styles.button}
-                  textColor={theme.colors.error}
-                >
-                  Delete
-                </Button>
-              </View>
-            )}
+                  style={styles.input}
+                  value={newTodo}
+                  onChangeText={setNewTodo}
+                  multiline
+                />
+              ) : (
+                <Text variant="titleMedium" style={styles.title}>
+                  {todo.title}
+                </Text>
+              )}
+
+              {isEditing ? (
+                <View style={styles.cardAction}>
+                  <Button
+                    onPress={() => setIsEditing(false)}
+                    mode="outlined"
+                    icon="close"
+                    contentStyle={styles.button}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    mode="contained"
+                    onPress={() => {
+                      saveEdit(newTodo);
+                      setIsEditing(false);
+                    }}
+                    icon="content-save-check"
+                    style={styles.saveButton}
+                    textColor="white"
+                  >
+                    Save
+                  </Button>
+                </View>
+              ) : (
+                <View style={styles.cardAction}>
+                  <Button
+                    onPress={() => setIsEditing(true)}
+                    mode="contained"
+                    icon="note-edit"
+                    contentStyle={styles.button}
+                    textColor="white"
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    onPress={() => deleteTodo(todo.id)}
+                    icon="delete"
+                    contentStyle={styles.button}
+                    textColor={theme.colors.error}
+                  >
+                    Delete
+                  </Button>
+                </View>
+              )}
+            </ScrollView>
           </Card.Content>
         </Card>
       </View>
