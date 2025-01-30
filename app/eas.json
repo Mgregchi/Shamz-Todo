@@ -7,11 +7,14 @@
       "developmentClient": true,
       "distribution": "internal"
     },
-    "android": {
-      "workflow": "managed"
-    },
-    "ios": {
-      "workflow": "managed"
+    "apk": {
+      "distribution": "store",
+      "env": {
+        "API_URL": "https://jsonplaceholder.typicode.com/todos?_limit=10"
+      },
+      "android": {
+        "buildType": "apk"
+      }
     },
     "preview": {
       "distribution": "internal"
@@ -19,6 +22,9 @@
     "production": {
       "env": {
         "API_URL": "https://jsonplaceholder.typicode.com/todos?_limit=10"
+      },
+      "android": {
+        "buildType": "apk"
       }
     }
   },

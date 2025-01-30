@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import { View, Text, FlatList, RefreshControl, ScrollView } from "react-native";
+import { useState, useContext, useEffect } from "react";
+import { View, FlatList, RefreshControl, ScrollView } from "react-native";
 import { TextInput, List, Appbar } from "react-native-paper";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,17 +8,15 @@ import styles from "../styles";
 import { MessageContext } from "../contexts/MessageContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LoadingContext } from "../contexts/LoadingContext";
-const apiUrl = process.env.API_URL;
+import EmptyComponent from "../components/EmptyComponent";
+import { fetchTodos } from "../services/api";
 
 export default function TodoListScreen({ navigation }) {
   const { setLoading } = useContext(LoadingContext);
-  const fetchTodos = async () => {
-    setLoading(true);
-    const { data } = await axios.get(apiUrl);
-    setLoading(false);
-    return data;
-  };
+  const [newTodo, setNewTodo] = useState("");
+  const { showMessage } = useContext(MessageContext);
   const queryClient = useQueryClient();
+
   const {
     data: todos,
     isLoading,
@@ -26,13 +24,20 @@ export default function TodoListScreen({ navigation }) {
   } = useQuery(["todos"], fetchTodos, {
     enabled: true,
     staleTime: Infinity,
+    cacheTime: 10 * 60 * 1000,
+    retry: 1,
+    refetchOnWindowFocus: false,
   });
-  const [newTodo, setNewTodo] = useState("");
-  const { showMessage } = useContext(MessageContext);
-
   useEffect(() => {
-    refetch();
-  }, []);
+    setLoading(isLoading);
+  }, [isLoading, setLoading]);
+
+  const loadTodos = async () => {
+    setLoading(true);
+    await refetch();
+    setLoading(false);
+  };
+
   const addTodo = () => {
     const newTask = {
       id: todos.length + 1,
@@ -63,7 +68,7 @@ export default function TodoListScreen({ navigation }) {
     });
   };
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <EmptyComponent />;
 
   const renderFooter = () => {
     // loadingMore ? <ActivityIndicator style={{ marginVertical: 16 }} /> : null;
@@ -107,10 +112,7 @@ export default function TodoListScreen({ navigation }) {
             keyExtractor={(item, index) => index.toString()}
             style={{ paddingVertical: 10 }}
             refreshControl={
-              <RefreshControl
-                refreshing={isLoading}
-                // onRefresh={loadTodos}
-              />
+              <RefreshControl refreshing={isLoading} onRefresh={loadTodos} />
             }
             // onEndReached={loadMore}
             onEndReachedThreshold={0.5}
@@ -124,7 +126,7 @@ export default function TodoListScreen({ navigation }) {
             }
           />
         ) : (
-          <ScrollView style={styles.container} centerContent>
+          <ScrollView contentContainerStyle={styles.container} centerContent>
             <List.Item
               title="No Todos Found"
               description="Your todos will appear here."

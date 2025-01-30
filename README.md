@@ -13,6 +13,8 @@ Shamz Todo App is a simple and intuitive task management application built with 
 
 ## Installation
 
+[APK](https://expo.dev/artifacts/eas/4MpbDQuQhFa2BgafEr66M5.apk)
+
 1. Clone the repository:
 
    ```sh

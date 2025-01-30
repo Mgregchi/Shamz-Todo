@@ -7,17 +7,12 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.jpg",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "platforms": ["ios", "android", "web"],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.mgregchi.todolistapp"
@@ -27,7 +22,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "enableHermes": true,
+      "enableProguardInReleaseBuilds": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -42,11 +39,6 @@
         }
       ]
     ],
-    "builds": {
-      "android": {
-        "releaseChannel": "prod"
-      }
-    },
     "extra": {
       "eas": {
         "projectId": "107fb350-c535-4b12-9492-9325f2eac382"

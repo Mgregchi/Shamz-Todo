@@ -17,12 +17,15 @@ export default function TodoItem({ item, onViewDetail, markAsCompleted }) {
         left={() => (
           <Tooltip title="Change status">
             <IconButton
-              icon={item.completed ? "checkbox-marked" : "checkbox-blank"}
+              icon={
+                item.completed
+                  ? "checkbox-marked-circle"
+                  : "checkbox-blank-circle"
+              }
               onPress={markAsCompleted}
             />
           </Tooltip>
         )}
-        // subtitle={item.completed ? "Completed" : "In Progress"}
         subtitle={
           <Chip
             icon={item.completed ? "check-circle" : "clock-outline"}
