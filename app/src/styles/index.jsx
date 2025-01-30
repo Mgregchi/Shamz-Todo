@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 16,
   },
+  inputContainer: { gap: 10 },
   button: { flexDirection: "row-reverse", color: "#fff" },
   chip: {
     borderRadius: 15,
@@ -35,6 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 5,
     paddingHorizontal: 10,
+    padding: 0,
   },
   listItem: { padding: 10 },
   modalBackground: {
