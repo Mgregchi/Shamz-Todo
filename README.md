@@ -13,12 +13,14 @@ Shamz Todo App is a simple and intuitive task management application built with 
 
 ## Installation
 
-- [Download The Android APK](https://expo.dev/artifacts/eas/fDABk96EAZv9VdMQJeLBrJ.apk)
+- [Download The Android APK](https://expo.dev/artifacts/eas/8uaXDrxeVxi19GNYTCUZe9.apk)
 - [/shamz-todo.apk](/shamz-todo.apk)
 
 OR 
 
-[View The Web Version](https://shamz-todo.vercel.app/)
+- [View The Web Version](https://shamz-todo.vercel.app/)
+
+- [View The Web Version](https://mgregchi.github.io/shamz-todo/)
 
 1. Clone the repository:
 

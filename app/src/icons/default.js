@@ -13,7 +13,7 @@ const defaultIcons = {
   "check-circle": "check-circle",
   "clock-outline": "clock-outline",
   "content-save-check": "content-save-check",
-  "note-edit": "note-edit",
+  pencil: "pencil",
   "format-list-checkbox": "format-list-checkbox",
 };
 

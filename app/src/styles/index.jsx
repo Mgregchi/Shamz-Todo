@@ -1,10 +1,11 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1 },
+  safeArea: {
+    flex: 1,
+  },
   container: { flex: 1, padding: 5, justifyContent: "center" },
   title: { fontSize: 18, marginBottom: 10, fontWeight: "bold" },
-  input_: { borderWidth: 1, padding: 8, borderRadius: 4, marginBottom: 10 },
   input: {
     width: "100%",
     height: 50,
@@ -39,12 +40,6 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   listItem: { padding: 10 },
-  modalBackground: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-  },
 });
 
 export default styles;

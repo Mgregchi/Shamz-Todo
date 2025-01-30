@@ -1,0 +1,21 @@
+{
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "lang": "en",
+  "name": "Shamz Todo List App",
+  "short_name": "Shamz Todo List App",
+  "start_url": "/?utm_source=web_app_manifest",
+  "orientation": "portrait",
+  "related_applications": [
+    {
+      "platform": "itunes",
+      "id": "com.mgregchi.todolistapp"
+    },
+    {
+      "platform": "play",
+      "url": "http://play.google.com/store/apps/details?id=com.mgregchi.todolistapp",
+      "id": "com.mgregchi.todolistapp"
+    }
+  ],
+  "prefer_related_applications": true
+}

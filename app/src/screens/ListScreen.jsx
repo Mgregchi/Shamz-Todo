@@ -82,6 +82,7 @@ export default function TodoListScreen({ navigation }) {
       <Appbar.Header>
         <Appbar.Content title="To-do" />
       </Appbar.Header>
+
       <View style={styles.container}>
         <View style={styles.inputContainer}>
           <TextInput

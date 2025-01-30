@@ -49,26 +49,65 @@ export default function TodoDetailScreen({ route, navigation }) {
       <Appbar.Header>
         <Appbar.BackAction onPress={() => navigation.goBack()} />
         <Appbar.Content title={todo.title} />
+        <Chip
+          icon={todo.completed ? "check-circle" : "clock-outline"}
+          style={[
+            styles.chip,
+            { backgroundColor: todo.completed ? "#4CAF50" : "#FFC107" },
+          ]}
+          textStyle={{ color: "#fff", fontWeight: "bold" }}
+        >
+          {todo.completed ? "Completed" : "In Progress"}
+        </Chip>
       </Appbar.Header>
-      <View style={styles.container}>
-        <Card style={styles.card}>
-          <Card.Title
-            title={todo.title}
-            right={() => (
-              <Chip
-                icon={todo.completed ? "check-circle" : "clock-outline"}
-                style={[
-                  styles.chip,
-                  { backgroundColor: todo.completed ? "#4CAF50" : "#FFC107" },
-                ]}
-                textStyle={{ color: "#fff", fontWeight: "bold" }}
-              >
-                {todo.completed ? "Completed" : "In Progress"}
-              </Chip>
-            )}
-          />
-          <Card.Content style={styles.cardContent}>
-            <ScrollView>
+      <View style={{ margin: 5 }}>
+        {isEditing ? (
+          <View style={styles.cardAction}>
+            <Button
+              onPress={() => setIsEditing(false)}
+              mode="outlined"
+              icon="close"
+              contentStyle={styles.button}
+            >
+              Cancel
+            </Button>
+            <Button
+              mode="contained"
+              onPress={saveEdit}
+              icon="content-save-check"
+              contentStyle={styles.button}
+              textColor="white"
+            >
+              Save
+            </Button>
+          </View>
+        ) : (
+          <View style={styles.cardAction}>
+            <Button
+              onPress={() => setIsEditing(true)}
+              mode="contained"
+              icon="pencil"
+              contentStyle={styles.button}
+              textColor="white"
+            >
+              Edit
+            </Button>
+            <Button
+              onPress={() => deleteTodo(todo.id)}
+              icon="delete"
+              contentStyle={styles.button}
+              textColor={theme.colors.error}
+            >
+              Delete
+            </Button>
+          </View>
+        )}
+      </View>
+      <ScrollView style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <Card style={styles.card}>
+            <Card.Title title={todo.title} />
+            <Card.Content style={styles.cardContent}>
               {isEditing ? (
                 <TextInput
                   mode="outlined"
@@ -82,55 +121,10 @@ export default function TodoDetailScreen({ route, navigation }) {
                   {todo.title}
                 </Text>
               )}
-
-              {isEditing ? (
-                <View style={styles.cardAction}>
-                  <Button
-                    onPress={() => setIsEditing(false)}
-                    mode="outlined"
-                    icon="close"
-                    contentStyle={styles.button}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    mode="contained"
-                    onPress={() => {
-                      saveEdit(newTodo);
-                      setIsEditing(false);
-                    }}
-                    icon="content-save-check"
-                    style={styles.saveButton}
-                    textColor="white"
-                  >
-                    Save
-                  </Button>
-                </View>
-              ) : (
-                <View style={styles.cardAction}>
-                  <Button
-                    onPress={() => setIsEditing(true)}
-                    mode="contained"
-                    icon="note-edit"
-                    contentStyle={styles.button}
-                    textColor="white"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    onPress={() => deleteTodo(todo.id)}
-                    icon="delete"
-                    contentStyle={styles.button}
-                    textColor={theme.colors.error}
-                  >
-                    Delete
-                  </Button>
-                </View>
-              )}
-            </ScrollView>
-          </Card.Content>
-        </Card>
-      </View>
+            </Card.Content>
+          </Card>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
