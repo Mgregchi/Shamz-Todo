@@ -1,7 +1,6 @@
 import React from "react";
-import { Chip, IconButton, Card, Tooltip } from "react-native-paper";
+import { Chip, Card, Button } from "react-native-paper";
 import styles from "../styles";
-
 
 export default function TodoItem({ item, onViewDetail, markAsCompleted }) {
   return (
@@ -9,23 +8,6 @@ export default function TodoItem({ item, onViewDetail, markAsCompleted }) {
       <Card.Title
         title={item.title}
         titleStyle={styles.title}
-        right={() => (
-          <Tooltip title="View details">
-            <IconButton icon="chevron-right" onPress={onViewDetail} />
-          </Tooltip>
-        )}
-        left={() => (
-          <Tooltip title="Change status">
-            <IconButton
-              icon={
-                item.completed
-                  ? "checkbox-marked-circle"
-                  : "checkbox-blank-circle"
-              }
-              onPress={markAsCompleted}
-            />
-          </Tooltip>
-        )}
         subtitle={
           <Chip
             icon={item.completed ? "check-circle" : "clock-outline"}
@@ -40,6 +22,30 @@ export default function TodoItem({ item, onViewDetail, markAsCompleted }) {
         }
         style={{ paddingStart: 0 }}
       />
+      <Card.Content
+        style={{
+          flexDirection: "row",
+          padding: 0,
+          justifyContent: "space-between",
+        }}
+      >
+        <Button
+          icon={
+            item.completed ? "checkbox-blank-circle" : "checkbox-marked-circle"
+          }
+          onPress={() => markAsCompleted(item.id)}
+          contentStyle={styles.button}
+        >
+          {item.completed ? "Mark In-Progress" : "Mark Completed"}
+        </Button>
+        <Button
+          icon="chevron-right"
+          onPress={onViewDetail}
+          contentStyle={styles.button}
+        >
+          View Details
+        </Button>
+      </Card.Content>
     </Card>
   );
 }

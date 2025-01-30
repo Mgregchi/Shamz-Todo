@@ -1,8 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { View, FlatList, RefreshControl, ScrollView } from "react-native";
-import { TextInput, List, Appbar } from "react-native-paper";
+import { TextInput, List, Appbar, Button } from "react-native-paper";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import TodoItem from "../components/TodoItem";
 import styles from "../styles";
 import { MessageContext } from "../contexts/MessageContext";
@@ -84,21 +83,23 @@ export default function TodoListScreen({ navigation }) {
         <Appbar.Content title="To-do" />
       </Appbar.Header>
       <View style={styles.container}>
-        <TextInput
-          mode="outlined"
-          label={"New Todo"}
-          value={newTodo}
-          onChangeText={setNewTodo}
-          multiline
-          right={
-            <TextInput.Icon
-              icon="plus"
-              onPress={addTodo}
-              aria-label="Add todo"
-            />
-          }
-        />
-
+        <View style={styles.inputContainer}>
+          <TextInput
+            mode="outlined"
+            label={"New Todo"}
+            value={newTodo}
+            onChangeText={setNewTodo}
+            multiline
+          />
+          <Button
+            mode="contained"
+            onPress={addTodo}
+            icon={"plus"}
+            contentStyle={styles.button}
+          >
+            Add Todo
+          </Button>
+        </View>
         {todos ? (
           <FlatList
             data={todos}
